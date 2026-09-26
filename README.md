@@ -2,9 +2,21 @@
 
 Append-only swing, break-of-structure, change-of-character, and price-zone events for closed OHLC bars.
 
-**Experimental v0.1.0 · TypeScript · ESM · Node.js 22+ · MIT · zero runtime dependencies**
+**Experimental v0.1.1 · TypeScript · ESM · Node.js 22+ · MIT · zero runtime dependencies**
 
 Unlike a retrospective chart annotation, an event records both the bar it refers to and when it became knowable. Adding future bars does not rewrite the historical event prefix.
+
+[![CI](https://github.com/farhad-arjmand/causal-market-structure/actions/workflows/ci.yml/badge.svg)](https://github.com/farhad-arjmand/causal-market-structure/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/%40farhadarjmand%2Fcausal-market-structure)](https://www.npmjs.com/package/@farhadarjmand/causal-market-structure)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/farhad-arjmand/causal-market-structure/blob/main/LICENSE)
+
+[API reference](https://github.com/farhad-arjmand/causal-market-structure/blob/main/docs/API.md) · [Changelog](https://github.com/farhad-arjmand/causal-market-structure/blob/main/CHANGELOG.md) · [Documentation map](https://github.com/farhad-arjmand/causal-market-structure/blob/main/llms.txt) · [Report an issue](https://github.com/farhad-arjmand/causal-market-structure/issues/new/choose)
+
+## When to use this
+
+Build point-in-time chart overlays, inspect confirmed swing events, or prepare features for a replay without backdating pivot confirmation. Supply closed OHLC bars and their actual receipt times when available.
+
+This is not a trade signal generator, execution engine, or a guarantee against look-ahead bias elsewhere in your pipeline.
 
 ## Get started
 
@@ -46,7 +58,7 @@ All times are nonnegative safe-integer epoch milliseconds. A bar spans **[openTi
 
 `availableAt` optionally records the actual time a closed bar became available. It must not precede `closeTime`. Without it, analysis assumes availability at the close; that is a research assumption, not evidence of live delivery.
 
-The event clock is the cumulative maximum of processed bar availability. A late earlier bar cannot be made knowable earlier by a subsequent on-time bar. `asOf` processes only the chronological prefix available by that instant. Missing intervals are **not** inferred or filled; validate coverage separately.
+The event clock is the cumulative maximum of processed bar availability. A late earlier bar cannot be made knowable earlier by a subsequent on-time bar. `asOf` must be a number other than NaN; non-numeric cutoffs (including null) are rejected. Explicit ±Infinity means all/none. `asOf` processes only the chronological prefix available by that instant. Missing intervals are **not** inferred or filled; validate coverage separately.
 
 ## Definitions
 
@@ -80,4 +92,10 @@ Tests cover synthetic exact event sequences, delayed availability, ambiguous wic
 
 No profitability, predictive accuracy, execution safety, or equivalence to a private trading model is claimed.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [NOTICE.md](NOTICE.md), and [LICENSE](LICENSE).
+See [Contributing](https://github.com/farhad-arjmand/causal-market-structure/blob/main/CONTRIBUTING.md), [Provenance](https://github.com/farhad-arjmand/causal-market-structure/blob/main/NOTICE.md), and [MIT license](https://github.com/farhad-arjmand/causal-market-structure/blob/main/LICENSE).
+
+## Integration and reproducibility
+
+ESM named imports only; tested on Node.js 22 and 24. Types are bundled. Browser and CommonJS support are not claimed. The package includes `docs/API.md` and `llms.txt` so humans and coding assistants can inspect the installed version's contract offline. A documentation map does not guarantee search ranking or AI indexing.
+
+For contributors, `npm run test:package` installs a freshly packed tarball in a temporary consumer, executes the README example, checks a functional assertion and type-checks imports by the public package name. Pin the package version and retain your input identity and options when comparing results.

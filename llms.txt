@@ -1,0 +1,20 @@
+# Causal Market Structure
+
+> TypeScript market structure: confirmed swings, BOS/CHOCH and heuristic order-block zones with point-in-time availability clocks.
+
+Package: @farhadarjmand/causal-market-structure. ESM, Node.js 22+, TypeScript declarations, MIT, zero runtime dependencies.
+This file is a compact documentation map, not an assurance that any search engine or AI service indexes it.
+
+## Documentation
+
+- [README](https://github.com/farhad-arjmand/causal-market-structure/blob/main/README.md): installation, example, definitions and limitations.
+- [API reference](https://github.com/farhad-arjmand/causal-market-structure/blob/main/docs/API.md): exact input/output contracts and edge cases.
+- [Implementation](https://github.com/farhad-arjmand/causal-market-structure/blob/main/src/index.ts): public implementation and exported types.
+- [Regression tests](https://github.com/farhad-arjmand/causal-market-structure/blob/main/test/regression.test.mjs): independently reproduced edge cases.
+- [Changelog](https://github.com/farhad-arjmand/causal-market-structure/blob/main/CHANGELOG.md): release-specific behavior changes.
+- [npm package](https://www.npmjs.com/package/@farhadarjmand/causal-market-structure): installable releases.
+
+## Constraints
+
+This is not a trade signal generator, execution engine, or a guarantee against look-ahead bias elsewhere in your pipeline.
+Examples and tests use synthetic data. No private datasets, credentials, trading service connections or training data are included. For reproducibility, use the installed package version's bundled docs, not changing main-branch documentation.

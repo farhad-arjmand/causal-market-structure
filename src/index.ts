@@ -62,7 +62,7 @@ export function validateCandles(bars: readonly Candle[]): void {
 
 /** Reducer for an ordered append-only event stream. It never mutates input. */
 export function stateAt(events: readonly StructureEvent[], asOf: number): StructureState {
-  if (Number.isNaN(asOf)) throw new RangeError('asOf must not be NaN');
+  if (typeof asOf !== 'number' || Number.isNaN(asOf)) throw new RangeError('asOf must be a number other than NaN');
   let trend: Trend | null = null;
   let lastHigh: SwingEvent | null = null;
   let lastLow: SwingEvent | null = null;
@@ -97,10 +97,10 @@ export function stateAt(events: readonly StructureEvent[], asOf: number): Struct
 export function analyzeStructure(bars: readonly Candle[], options: StructureOptions = {}) {
   const k = options.swingLength ?? 2;
   const mode = options.breakMode ?? 'close';
-  const asOf = options.asOf ?? Infinity;
+  const asOf = options.asOf === undefined ? Infinity : options.asOf;
   if (!Number.isSafeInteger(k) || k < 1 || k > 10000) throw new RangeError('Invalid swingLength');
   if (mode !== 'close' && mode !== 'wick') throw new RangeError('Invalid breakMode');
-  if (Number.isNaN(asOf)) throw new RangeError('Invalid asOf');
+  if (typeof asOf !== 'number' || Number.isNaN(asOf)) throw new RangeError('Invalid asOf');
   validateCandles(bars);
   const events: StructureEvent[] = [];
   let high: (SwingEvent & { broken: boolean }) | null = null;

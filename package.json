@@ -1,7 +1,7 @@
 {
   "name": "@farhadarjmand/causal-market-structure",
-  "version": "0.1.0",
-  "description": "Append-only, availability-aware swing and market-structure events for closed OHLC bars.",
+  "version": "0.1.1",
+  "description": "TypeScript market structure: confirmed swings, BOS/CHOCH and heuristic order-block zones with point-in-time availability clocks.",
   "type": "module",
   "license": "MIT",
   "author": "Farhad Arjmand",
@@ -27,7 +27,10 @@
   },
   "files": [
     "dist",
+    "docs/API.md",
+    "llms.txt",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE",
     "NOTICE.md"
   ],
@@ -38,15 +41,22 @@
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && node --test test/*.test.mjs && tsc -p test/tsconfig.json",
     "check": "npm test && node examples/basic.mjs && node scripts/check-package.mjs",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "test:package": "npm run build && node scripts/smoke-tarball.mjs"
   },
   "devDependencies": {
     "typescript": "5.9.3"
   },
   "keywords": [
     "typescript",
-    "quantitative-finance",
-    "research",
-    "causal-market-structure"
+    "market-structure",
+    "ohlc",
+    "bos",
+    "choch",
+    "order-blocks",
+    "backtesting",
+    "point-in-time",
+    "technical-analysis",
+    "quantitative-finance"
   ]
 }
