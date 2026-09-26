@@ -8,7 +8,13 @@ Unlike a retrospective chart annotation, an event records both the bar it refers
 
 ## Get started
 
-The source is available on GitHub; **npm publication is pending**.
+Install the ESM package:
+
+```sh
+npm install @farhadarjmand/causal-market-structure
+```
+
+To build and test from source:
 
 ```sh
 git clone https://github.com/farhad-arjmand/causal-market-structure.git
@@ -19,7 +25,7 @@ node examples/basic.mjs
 ```
 
 ```js
-import { analyzeStructure, stateAt } from './dist/index.js';
+import { analyzeStructure, stateAt } from '@farhadarjmand/causal-market-structure';
 
 const bars = [
   { openTime: 0, closeTime: 60000, open: 10, high: 11, low: 9, close: 10 },
@@ -32,7 +38,7 @@ console.log(result.events);
 console.log(stateAt(result.events, 180000).lastHigh?.level); // 13
 ```
 
-The planned package name is `@farhadarjmand/causal-market-structure`; registry availability is not claimed.
+Package: [`@farhadarjmand/causal-market-structure`](https://www.npmjs.com/package/@farhadarjmand/causal-market-structure).
 
 ## Clock contract
 
