@@ -1,0 +1,52 @@
+{
+  "name": "@farhadarjmand/causal-market-structure",
+  "version": "0.1.0",
+  "description": "Append-only, availability-aware swing and market-structure events for closed OHLC bars.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Farhad Arjmand",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farhad-arjmand/causal-market-structure.git"
+  },
+  "bugs": {
+    "url": "https://github.com/farhad-arjmand/causal-market-structure/issues"
+  },
+  "homepage": "https://github.com/farhad-arjmand/causal-market-structure#readme",
+  "engines": {
+    "node": ">=22"
+  },
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs && tsc -p test/tsconfig.json",
+    "check": "npm test && node examples/basic.mjs && node scripts/check-package.mjs",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "keywords": [
+    "typescript",
+    "quantitative-finance",
+    "research",
+    "causal-market-structure"
+  ]
+}
